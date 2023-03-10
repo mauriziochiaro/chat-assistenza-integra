@@ -5,4 +5,3 @@ faiss-cpu
 gradio
 streamlit
 streamlit-chat
-pickle
