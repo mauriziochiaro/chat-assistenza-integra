@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_chat import message
 from langchain.embeddings import OpenAIEmbeddings
 openai_api_key = st.secrets["OPENAI_API_KEY"]
-openai = OpenAIEmbeddings(openai_api_key=openai_api_key)
+OpenAIEmbeddings(openai_api_key=openai_api_key)
 # from ingest_data import embed_doc
 
 from query_data import _template, CONDENSE_QUESTION_PROMPT, QA_PROMPT, get_chain
@@ -14,21 +14,6 @@ import os
 # From here down is all the StreamLit UI.
 st.set_page_config(page_title="Assistenza INTEGRA beta", page_icon=":robot:")
 st.header("Assistenza INTEGRA beta")
-
-# uploaded_file = st.file_uploader("Upload a document", type=None, accept_multiple_files=False,key=None,help=None,args=None,kwargs=None,disabled=False,label_visibility="visible")
-
-# if uploaded_file is not None and uploaded_file.name not in os.listdir("D:\WebApps\piccoloAssistant\data"):
-#     with open("D:/WebApps/piccoloAssistant/data/" + uploaded_file.name, "wb") as f:
-#         f.write(uploaded_file.getbuffer())
-#         st.write("File uploaded successfully")
-#         with st.spinner('Document is being vectorized...'):
-#             embed_doc()
-
-# if "vectorstore.pkl" in os.listdir("D:\WebApps\piccoloAssistant"):
-#     with open("D:/WebApps/piccoloAssistant/vectorstore.pkl", "rb") as f:
-#         vectorstore = pickle.load(f)
-#         print("Loading vectorstore...")  
-#     chain = get_chain(vectorstore)           
 
 # Use the file uploader to get the path to the vectorstore file
 uploaded_file = st.file_uploader("Upload your vectorstore file", type=["pkl"])
