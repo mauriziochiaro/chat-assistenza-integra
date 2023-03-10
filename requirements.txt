@@ -1,7 +1,6 @@
 langchain
 openai
 unstructured
-faiss
 faiss-cpu
 gradio
 streamlit
