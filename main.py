@@ -2,6 +2,8 @@
 import streamlit as st
 from streamlit_chat import message
 from langchain.embeddings import OpenAIEmbeddings
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+openai = OpenAIEmbeddings(openai_api_key=openai_api_key)
 # from ingest_data import embed_doc
 
 from query_data import _template, CONDENSE_QUESTION_PROMPT, QA_PROMPT, get_chain
