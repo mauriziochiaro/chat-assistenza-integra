@@ -2,6 +2,9 @@ from langchain.prompts.prompt import PromptTemplate
 from langchain.llms import OpenAI
 # from langchain.chat_models import ChatOpenAI
 from langchain.chains import ChatVectorDBChain
+import streamlit as st
+
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 
 _template = """Data la seguente conversazione e una domanda di follow-up, riformula la domanda di follow-up in una domanda autonoma.
 
@@ -24,7 +27,7 @@ QA_PROMPT = PromptTemplate(template=template, input_variables=["question", "cont
 
 
 def get_chain(vectorstore):
-    llm = OpenAI(temperature=0, max_tokens=1000)
+    llm = OpenAI(temperature=0, max_tokens=1000, openai_api_key=openai_api_key)
     # llm = OpenAI(model="gpt-3.5-turbo", temperature=0, max_tokens=1000)
     qa_chain = ChatVectorDBChain.from_llm(
         llm,
