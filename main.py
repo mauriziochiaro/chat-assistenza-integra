@@ -1,7 +1,7 @@
 """Python file to serve as the frontend"""
 import streamlit as st
 from streamlit_chat import message
-
+from langchain.embeddings import OpenAIEmbeddings
 # from ingest_data import embed_doc
 
 from query_data import _template, CONDENSE_QUESTION_PROMPT, QA_PROMPT, get_chain
