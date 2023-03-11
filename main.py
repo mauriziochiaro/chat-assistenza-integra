@@ -14,15 +14,20 @@ import os
 st.set_page_config(page_title="Assistenza INTEGRA beta", page_icon=":robot:")
 st.header("Assistenza INTEGRA beta")
 
-# Use the file uploader to get the path to the vectorstore file
-uploaded_file = st.file_uploader("Upload your vectorstore file", type=["pkl"])
-
-# Check if a file has been uploaded
-if uploaded_file is not None:
-    # Load the vectorstore from the uploaded file
-    vectorstore = pickle.load(uploaded_file)
-    chain = get_chain(vectorstore)
-    st.success("Vectorstore loaded successfully!")   
+dir_name = os.path.dirname(__file__)
+base_filename = "vectorstore"  
+suffix = ".pkl"
+vectorstore_path = os.path.join(dir_name,base_filename+suffix)    
+try:
+    with open(vectorstore_path, "rb") as f:
+        vectorstore = pickle.load(f)
+        st.success("Caricamento documentazione...") 
+        chain = get_chain(vectorstore)
+        st.success("Documentazione caricata!")  
+        st.success("Puoi chiedermi informazioni riguardo la documentazione di Progetto INTEGRA")  
+        
+except Exception as e:
+    print(e)     
 
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
