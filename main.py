@@ -46,9 +46,12 @@ print(st.session_state.input)
 print(user_input)
 
 if user_input:
-    docs = vectorstore.similarity_search(user_input)
-    print(len(docs))
-    output = chain.run(input=user_input,vectorstore=vectorstore,context=docs[:2],chat_history = [],question=user_input,QA_PROMPT=QA_PROMPT,CONDENSE_QUESTION_PROMPT=CONDENSE_QUESTION_PROMPT,template=_template)
+    #docs = vectorstore.similarity_search(user_input)
+    docs = vectorstore
+    #print(len(docs))
+    # output = chain.run(input=user_input,vectorstore=vectorstore,context=docs[:2],chat_history = [],question=user_input,QA_PROMPT=QA_PROMPT,CONDENSE_QUESTION_PROMPT=CONDENSE_QUESTION_PROMPT,template=_template)
+
+    output = chain.run(input=user_input,vectorstore=vectorstore,context=docs,chat_history = [],question=user_input,QA_PROMPT=QA_PROMPT,CONDENSE_QUESTION_PROMPT=CONDENSE_QUESTION_PROMPT,template=_template)
 
     st.session_state.past.append(user_input)
     print(st.session_state.past)
